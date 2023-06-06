@@ -1,0 +1,24 @@
+--1. Выбрать всех студентов, обучающихся на курсе "Математика"
+select students.surname from students
+join group_s on students.id_group=group_s.id
+join course on group_s.id_course=course.id
+where course.name_course = 'Математика';
+
+--2. Обновить оценку студента по курсу.
+--Не понял задачи, возможно потому что неправильно базу составил.
+
+--3. Выбрать всех преподавателей, которые преподают в здании №3.
+select teacher.name_teacher from teacher
+join course on course.id_teacher=teacher.id
+join schedule on course.id=schedule.id_course
+join classroom on schedule.id_classroom=classroom.id
+where classroom.id_building = 2
+
+--4. Удалить задание для самостоятельной работы, которое было создано более года назад.
+select * from exercise;
+delete from exercise
+where time_create < (now() - interval '1 year');
+select * from exercise;
+
+--5. Добавить новый семестр в учебный год.
+insert into semester (number_semester) values (4);
